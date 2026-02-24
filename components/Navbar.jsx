@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-tight text-blue-900" onClick={closeMenu}>
-          TechReview<span className="text-blue-600">.io</span>
+          DevDecide
         </Link>
 
         {/* Desktop Navigation */}

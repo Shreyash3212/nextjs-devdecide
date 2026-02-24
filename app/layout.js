@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar'; // Import the new client component
 
 export const metadata = {
   title: {
-    template: '%s | TechReview', // This automatically appends "| TechReview" to all child pages
-    default: 'TechReview | Find the perfect software for your dev team.',
+    template: '%s | DevDecide', // This automatically appends "| DevDecide" to all child pages
+    default: 'DevDecide | Find the perfect software for your dev team.',
   },
   description: 'We analyze, test, and compare the best B2B SaaS tools, APIs, and cloud infrastructure so you can build faster and scale smarter.',
   keywords: ['B2B SaaS', 'Developer Tools', 'Software Reviews', 'API Comparisons'],
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 
         {/* Global Footer */}
         <footer className="bg-gray-900 text-gray-400 py-12 text-center text-sm mt-20">
-          <p>© {new Date().getFullYear()} TechReview.io. Built for high-performance B2B SEO.</p>
+          <p>© {new Date().getFullYear()} DevDecide. Built for high-performance B2B SEO.</p>
         </footer>
       </body>
     </html>

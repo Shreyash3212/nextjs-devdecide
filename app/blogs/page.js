@@ -3,7 +3,7 @@ import { getAllBlogs } from '@/lib/markdown';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'All B2B Tech Blogs & Guides | TechReview.io',
+  title: 'All B2B Tech Blogs & Guides | DevDecide',
   description: 'Read all of our technical guides, SEO strategies, and B2B SaaS architecture deep dives.',
 };
 

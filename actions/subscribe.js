@@ -21,11 +21,11 @@ export async function subscribeToNewsletter(formData) {
       },
       Message: {
         Body: {
-          Text: { Data: "Welcome to TechReview.io! You'll now receive our weekly B2B SaaS breakdowns." },
+          Text: { Data: "Welcome to DevDecide! You'll now receive our weekly B2B SaaS breakdowns." },
         },
-        Subject: { Data: "Subscription Confirmed - TechReview.io" },
+        Subject: { Data: "Subscription Confirmed - DevDecide" },
       },
-      Source: "hello@yourdomain.com", // Must be a verified identity in SES
+      Source: "hello@devdecide.com", // Must be a verified identity in SES
       // If you are using configuration sets for tracking bounces/deliverability, you can add it here:
       // ConfigurationSetName: "YourNewsletterConfigSet",
     });

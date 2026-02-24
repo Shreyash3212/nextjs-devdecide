@@ -3,7 +3,7 @@ import { getAllComparisons } from '@/lib/markdown';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Software Comparisons & Alternatives | TechReview.io',
+  title: 'Software Comparisons & Alternatives | DevDecide',
   description: 'Head-to-head comparisons of top B2B SaaS platforms to help you choose the right stack.',
 };
 

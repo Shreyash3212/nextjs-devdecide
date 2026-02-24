@@ -2,7 +2,7 @@
 import { getAllReviews, getAllBlogs, getAllComparisons } from '@/lib/markdown'; // 1. Added getAllComparisons
 
 export default async function sitemap() {
-  const baseUrl = 'https://techreview.io'; // Update this before you go live!
+  const baseUrl = 'https://devdecide.com'; // Update this before you go live!
 
   // 1. Get all your dynamic Markdown reviews
   const reviews = await getAllReviews();

@@ -3,7 +3,7 @@ import { getAllReviews } from '@/lib/markdown';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'B2B SaaS & Developer Tool Reviews | TechReview.io',
+  title: 'B2B SaaS & Developer Tool Reviews | DevDecide',
   description: 'Unbiased, deep-dive reviews of the best CRM, cloud infrastructure, and developer tools on the market.',
 };
 
