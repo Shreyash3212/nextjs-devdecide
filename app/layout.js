@@ -1,6 +1,7 @@
 // app/layout.js
 import './globals.css';
 import Navbar from '@/components/Navbar'; // Import the new client component
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
   title: {
@@ -28,6 +29,10 @@ export default function RootLayout({ children }) {
         <footer className="bg-gray-900 text-gray-400 py-12 text-center text-sm mt-20">
           <p>© {new Date().getFullYear()} DevDecide. DevDecide. All rights reserved.</p>
         </footer>
+
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
