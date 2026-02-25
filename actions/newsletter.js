@@ -55,7 +55,15 @@ export async function subscribeToNewsletter(formData) {
                 <p style="color: #4a5568; font-size: 16px; line-height: 1.5;">
                   Expect our best engineering breakdowns in your inbox soon.<br><br>
                   Cheers,<br>
-                  Team DevDecide
+                  Shreyash
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+                <p style="color: #a0aec0; font-size: 12px; line-height: 1.5; text-align: center;">
+                  You are receiving this email because you opted in at DevDecide.com.<br><br>
+                  <a href="https://devdecide.com/unsubscribe?email=${encodeURIComponent(email)}" style="color: #3182ce; text-decoration: underline;">Unsubscribe from this list</a><br><br>
+                  DevDecide<br>
+                  Nagpur, Maharashtra, India
                 </p>
               </div>
             `,
@@ -72,6 +80,34 @@ export async function subscribeToNewsletter(formData) {
     return { success: true, message: "Subscribed successfully! Check your inbox." };
   } catch (error) {
     console.error("Newsletter Subscription Error:", error);
+    return { success: false, message: "Something went wrong. Please try again." };
+  }
+}
+
+export async function unsubscribeUser(formData) {
+  await dbConnect();
+
+  try {
+    const email = formData.get("email");
+
+    if (!email) {
+      return { success: false, message: "No email provided." };
+    }
+
+    // Find the user and update their status
+    const updatedUser = await Subscriber.findOneAndUpdate(
+      { email: email },
+      { status: "unsubscribed" },
+      { new: true } // Returns the updated document
+    );
+
+    if (!updatedUser) {
+      return { success: false, message: "We couldn't find that email in our system." };
+    }
+
+    return { success: true, message: "You have been successfully unsubscribed." };
+  } catch (error) {
+    console.error("Unsubscribe Error:", error);
     return { success: false, message: "Something went wrong. Please try again." };
   }
 }
