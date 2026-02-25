@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 
         {/* Global Footer */}
         <footer className="bg-gray-900 text-gray-400 py-12 text-center text-sm mt-20">
-          <p>© {new Date().getFullYear()} DevDecide. Built for high-performance B2B SEO.</p>
+          <p>© {new Date().getFullYear()} DevDecide. DevDecide. All rights reserved.</p>
         </footer>
       </body>
     </html>
