@@ -11,7 +11,7 @@ const SubscriberSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["active", "unsubscribed", "bounced", "complained"],
+      enum: ["active", "unsubscribed", "bounced", "complained", "suppressed"],
       default: "active",
     },
   },
