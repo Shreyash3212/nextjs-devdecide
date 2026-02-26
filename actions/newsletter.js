@@ -134,10 +134,15 @@ export async function unsubscribeUser(formData) {
   await dbConnect();
 
   try {
-    const email = formData.get("email");
+    // 1. Strict Regex pattern for email validation
+    // Strict alphanumeric email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!email) {
-      return { success: false, message: "No email provided." };
+    if (!email || !emailRegex.test(email)) {
+      return {
+        success: false,
+        message: "Please provide a valid email address.",
+      };
     }
 
     // Find the user and update their status
