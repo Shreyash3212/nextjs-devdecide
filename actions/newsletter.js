@@ -59,26 +59,24 @@ export async function subscribeToNewsletter(formData) {
       await Subscriber.create({ email, status: "active" });
     }
 
-    // 5. Construct the Welcome Email HTML (Optimized for the Primary Tab)
+    // 5. Construct the Welcome Email HTML (Broad Audience Welcome)
     const htmlContent = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; color: #111827; line-height: 1.6; max-width: 600px;">
         <p>Hey there,</p>
         
-        <p>Thanks for joining the DevDecide newsletter. You are officially on the list to get our latest B2B SaaS reviews and technical deep-dives.</p>
+        <p>Thanks for joining the DevDecide newsletter. You are officially on the list.</p>
         
-        <p>Before I send you the next breakdown, I have a quick question for you:</p>
+        <p>Our goal is to help you make the best software choices for your business or project. Moving forward, we will be sending you our latest content the moment it is published. You can expect:</p>
         
-        <p><strong>What is the #1 developer tool or SaaS product you are struggling to choose between right now?</strong></p>
+        <ul style="color: #4B5563; padding-left: 20px;">
+          <li style="margin-bottom: 8px;"><strong>In-depth Blogs:</strong> Guides, industry insights, and software trends.</li>
+          <li style="margin-bottom: 8px;"><strong>Direct Comparisons:</strong> Head-to-head matchups so you can see exactly how competing tools stack up against each other.</li>
+          <li style="margin-bottom: 8px;"><strong>B2B SaaS Reviews:</strong> Honest breakdowns of features, pricing, and overall usability.</li>
+        </ul>
         
-        <p>Reply directly to this email and let me know. I read and reply to every single one, and it helps me figure out exactly what to review next.</p>
+        <p>Keep an eye on your inbox for our next update. Until then, feel free to explore the latest posts already live on the site.</p>
         
-        <p>Talk soon,<br>Shreyash</p>
-        
-        <br>
-        
-        <p style="font-size: 14px; color: #4B5563;">
-          <em>P.S. To make sure these reviews actually reach you, try replying to this email or dragging it to your Primary tab. Gmail's algorithm loves to hide good technical content in the Promotions folder.</em>
-        </p>
+        <p>Cheers,<br>Shreyash</p>
         
         <div style="margin-top: 40px; font-size: 12px; color: #9CA3AF;">
           <a href="https://devdecide.com/unsubscribe?email=${encodeURIComponent(email)}" style="color: #9CA3AF; text-decoration: underline;">Unsubscribe</a>
