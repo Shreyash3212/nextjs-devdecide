@@ -1,10 +1,21 @@
-'use server';
+"use server";
 
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import { Resend } from "resend";
 
-// Initialize the SES Client
+// --- AWS SES Setup (Currently Disabled) ---
 // In production, ensure AWS_REGION, AWS_ACCESS_KEY_ID, and AWS_SECRET_ACCESS_KEY are in your .env
 const sesClient = new SESClient({ region: process.env.AWS_REGION || "ap-south-1" });
+
+// --- Resend Setup (Currently Active) ---
+// Ensure RESEND_API_KEY is in your .env.local
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// ==========================================
+// INFRASTRUCTURE TOGGLE
+// Change this to `true` once AWS SES production access is approved
+// ==========================================
+const USE_AWS_SES = false; 
 
 export async function subscribeToNewsletter(formData) {
   const email = formData.get('email');
@@ -14,29 +25,44 @@ export async function subscribeToNewsletter(formData) {
   }
 
   try {
-    // 1. Send a welcome email to the subscriber
-    const command = new SendEmailCommand({
-      Destination: {
-        ToAddresses: [email],
-      },
-      Message: {
-        Body: {
-          Text: { Data: "Welcome to DevDecide! You'll now receive our weekly B2B SaaS breakdowns." },
+    if (USE_AWS_SES) {
+      // --------------------------------------------------
+      // PATH A: AMAZON SES (Ready for the future)
+      // --------------------------------------------------
+      const command = new SendEmailCommand({
+        Destination: {
+          ToAddresses: [email],
         },
-        Subject: { Data: "Subscription Confirmed - DevDecide" },
-      },
-      Source: "hello@devdecide.com", // Must be a verified identity in SES
-      // If you are using configuration sets for tracking bounces/deliverability, you can add it here:
-      // ConfigurationSetName: "YourNewsletterConfigSet",
-    });
+        Message: {
+          Body: {
+            Text: { Data: "Welcome to DevDecide! You'll now receive our weekly B2B SaaS breakdowns." },
+          },
+          Subject: { Data: "Subscription Confirmed - DevDecide" },
+        },
+        Source: "hello@devdecide.com", // Must be a verified identity in SES
+      });
 
-    await sesClient.send(command);
+      await sesClient.send(command);
 
-    // 2. In a full production app, you would also save this email to a database here (like DynamoDB or Postgres)
+    } else {
+      // --------------------------------------------------
+      // PATH B: RESEND (Active right now)
+      // --------------------------------------------------
+      await resend.emails.send({
+        from: 'Pranay <hello@devdecide.com>', 
+        to: email,
+        subject: 'Subscription Confirmed - DevDecide',
+        // Note: You can swap this simple HTML out for the React Email component later
+        html: '<p>Welcome to DevDecide! You will now receive our weekly B2B SaaS breakdowns.</p>',
+      });
+    }
+
+    // 2. Save this email to your MongoDB database here
 
     return { success: true };
+    
   } catch (error) {
-    console.error("SES Error:", error);
+    console.error("Email Infrastructure Error:", error);
     return { error: 'Failed to subscribe. Please try again later.' };
   }
 }
